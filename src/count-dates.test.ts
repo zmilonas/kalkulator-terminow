@@ -2,6 +2,7 @@
  * @jest-environment node
  */
 import { formatDuration, parseISO } from "date-fns";
+import 'jest-date';
 import { countDates } from "./count-dates";
 
 describe("countDates", () => {

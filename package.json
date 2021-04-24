@@ -42,9 +42,6 @@
   "private": false,
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "./jest.setup.ts"
-    ]
+    "testEnvironment": "jsdom"
   }
 }
