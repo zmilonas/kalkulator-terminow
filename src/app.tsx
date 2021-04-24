@@ -1,8 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {ChakraProvider, Container, Grid, GridItem, Heading, Input,} from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import {countDates} from "./count-dates";
 import {defaultStartDate, DurationCtx, SelectedDuration, useDuration} from "./store";
 import {ContentItem, MidTitle} from "./Style";
@@ -18,7 +16,13 @@ function calculate(startDate: Date, duration: SelectedDuration): ReturnType<type
     return countDates(startDate, duration);
 }
 
-function App() {
+type AppDependencies = {
+  i18n: {
+    t: (s: string) => string;
+  }
+}
+
+export default function App({ i18n }: AppDependencies) {
   const [duration, setDuration] = useDuration();
   const [startDate, setStartDate] = React.useState<Date>(defaultStartDate);
   const [resultDate, explanations] = calculate(startDate, duration);
@@ -26,30 +30,30 @@ function App() {
   return (
     <ChakraProvider>
       <Container centerContent maxWidth={"50rem"}>
-        <Heading>Kalkulator terminów</Heading>
+        <Heading role={"heading"}>{i18n.t('Limitation calculator')}</Heading>
         <Heading size="xs">
           Obliczenie terminu według zasad określonych w KPA
         </Heading>
         <DurationCtx.Provider value={{ duration, setDuration }}>
           <Grid templateColumns="1fr 4fr" gap={4}>
-            <MidTitle>Data Rozpoczęcia</MidTitle>
+            <MidTitle>{i18n.t('Start date')}</MidTitle>
             <ContentItem>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                customInput={<Input />}
+                customInput={<Input aria-label={i18n.t('Start date')} />}
                 monthsShown={2}
                 showYearDropdown
                 showMonthDropdown
               />
             </ContentItem>
-            <MidTitle>Długość</MidTitle>
-            <GridItem>
+            <MidTitle>{i18n.t('Duration')}</MidTitle>
+            <GridItem aria-label={i18n.t('Duration')}>
               <DurationRow unit="days" choices={[7, 14, 21, 30, 60, 90]} />
               <DurationRow unit="months" choices={[1, 2, 3, 6, 12]} />
               <DurationRow unit="years" choices={[1, 2, 3, 4]} />
             </GridItem>
-            <MidTitle>Rezultat</MidTitle>
+            <MidTitle>{i18n.t('Result')}</MidTitle>
             <GridItem>
               <ResultBox
                 resultDate={resultDate}
@@ -67,4 +71,3 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));

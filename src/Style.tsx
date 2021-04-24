@@ -13,8 +13,8 @@ export const DateExpression = ({children}) => (
         {children}
     </Text>
 );
-export const Result = ({children}) => (
-    <Text align={"center"} fontSize={"2xl"}>
+export const Result = ({children, ...props}) => (
+    <Text align={"center"} fontSize={"2xl"} {...props}>
         {children}
     </Text>
 );

@@ -14,7 +14,7 @@ export const ResultBox: React.FC<{
             <DateExpression>
                 {formattedDuration} od {format(startDate, "do MMMM yyyy")} to
             </DateExpression>
-            <Result>{format(resultDate, "do MMMM yyyy")}</Result>
+            <Result aria-label={'Result'}>{format(resultDate, "do MMMM yyyy")}</Result>
         </Box>
     );
 };

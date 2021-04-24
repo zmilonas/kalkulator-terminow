@@ -32,7 +32,7 @@ export const DurationRow: React.FC<{
     const inputValue = state.duration?.[unit] || "";
 
     return (
-        <HStack justify={"space-between"} width={"100%"}>
+        <HStack justify={"space-between"} width={"100%"} role={"row"}>
             {choices.map((num) => (
                 <Entry value={{[unit]: num}} key={unit + num}/>
             ))}
