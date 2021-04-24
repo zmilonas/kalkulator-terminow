@@ -16,10 +16,10 @@ export const DurationCtx = React.createContext<Context>({
     },
 });
 
-export function useDuration() {
+export function useDuration(): [Context['duration'], Context['setDuration']] {
     const [duration, localSetDuration] = React.useState<SelectedDuration>(defaultDuration);
     const setDuration = React.useCallback((value) => {
         localSetDuration(value);
     }, []);
-    return {duration, setDuration};
+    return [duration, setDuration];
 }

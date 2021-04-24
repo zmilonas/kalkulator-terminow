@@ -172,7 +172,7 @@ function calculate(startDate: Date, duration: SelectedDuration): ReturnType<type
 }
 
 function App() {
-  const { duration, setDuration } = useDuration();
+  const [duration, setDuration] = useDuration();
   const [startDate, setStartDate] = React.useState<Date>(defaultStartDate);
   const [resultDate, explanations] = calculate(startDate, duration);
 
