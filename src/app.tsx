@@ -24,7 +24,7 @@ import {
   getHoliday,
   Holiday,
 } from "./date-helpers";
-import { defaultStartDate, DurationCtx, useDuration } from "./store";
+import { defaultStartDate, DurationCtx, SelectedDuration, useDuration } from "./store";
 
 const Explanation = ({ children }) => (
   <Text align={"center"} color={"gray.500"} fontSize={"sm"}>
@@ -37,7 +37,7 @@ const DateExpression = ({ children }) => (
   </Text>
 );
 const Result = ({ children }) => (
-  <Text align={"center"} fontSize={"2xl"} mb={4}>
+  <Text align={"center"} fontSize={"2xl"}>
     {children}
   </Text>
 );
@@ -147,35 +147,34 @@ const Explanations: React.FC<{ data: SkippedDay[] }> = ({ data }) => {
   );
 };
 
-const ResultBox: React.FC<{ startDate: Date; duration: Duration }> = ({
-  startDate,
-  duration,
-}) => {
-  if (!duration) {
-    return (
-      <Box width="100%" p={4} borderWidth="1px" borderRadius="sm">
-        <DateExpression>długość od daty początkowej to</DateExpression>
-        <Result>data terminu</Result>
-      </Box>
-    );
-  }
-  const [resultDate, explanations] = countDates(startDate, duration);
+const ResultBox: React.FC<{
+  startDate: Date;
+  resultDate: Date;
+  duration: Duration;
+}> = ({ startDate, resultDate, duration }) => {
+    const formattedDuration: string = formatDuration(duration || {}) || 'chwila';
   return (
-    <>
       <Box p={4} borderWidth="1px" borderRadius="sm" width={"100%"}>
         <DateExpression>
-          {formatDuration(duration)} od {format(startDate, "do MMMM yyyy")} to
+            {formattedDuration} od {format(startDate, "do MMMM yyyy")} to
         </DateExpression>
         <Result>{format(resultDate, "do MMMM yyyy")}</Result>
-        <Explanations data={explanations} />
       </Box>
-    </>
   );
 };
+
+function calculate(startDate: Date, duration: SelectedDuration): ReturnType<typeof countDates>
+{
+    if (!duration) {
+        return [startDate, []]
+    }
+    return countDates(startDate, duration);
+}
 
 function App() {
   const { duration, setDuration } = useDuration();
   const [startDate, setStartDate] = React.useState<Date>(defaultStartDate);
+  const [resultDate, explanations] = calculate(startDate, duration);
 
   return (
     <ChakraProvider>
@@ -206,9 +205,13 @@ function App() {
             <MidTitle>Rezultat</MidTitle>
             <GridItem>
               <ResultBox
+                resultDate={resultDate}
                 startDate={startDate || defaultStartDate}
                 duration={duration}
               />
+            </GridItem>
+            <GridItem colStart={2}>
+              <Explanations data={explanations} />
             </GridItem>
           </Grid>
         </DurationCtx.Provider>
