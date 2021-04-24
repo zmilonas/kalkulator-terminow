@@ -8,14 +8,14 @@ Kalkulator nie daje gwarancji poprawności danego terminu ale zdecydowania pomag
 
 Data początkowa terminu to zazwyczaj termin doręczenia, data, od której liczy się termin.
 
-Termin to długość określona w konkretnych przepisie ustawy, np. termin na odwołanie, zażalenie, wniesienie skargi itd. 
+Termin to długość określona w konkretnych przepisie ustawy, np. termin na odwołanie, zażalenie, wniesienie skargi itd.
 
 ## Brzmienie przepisu, zasada działania
 
 Kalkulator został przygotowany na początku 2021 roku z ówczesnym poniższym brzmieniem przepisu KPA.
 
 ```
-Art.  57. 
+Art.  57.
 §  1. Jeżeli początkiem terminu określonego w dniach jest pewne zdarzenie, przy obliczaniu tego terminu nie uwzględnia się dnia, w którym zdarzenie nastąpiło. Upływ ostatniego z wyznaczonej liczby dni uważa się za koniec terminu.
 §  2. Terminy określone w tygodniach kończą się z upływem tego dnia w ostatnim tygodniu, który nazwą odpowiada początkowemu dniowi terminu.
 §  3. Terminy określone w miesiącach kończą się z upływem tego dnia w ostatnim miesiącu, który odpowiada początkowemu dniowi terminu, a gdyby takiego dnia w ostatnim miesiącu nie było - w ostatnim dniu tego miesiąca.
@@ -64,3 +64,11 @@ Wykonanie testów automatycznych
 ```sh
 yarn test
 ```
+
+Zbudowanie wersji produkcyjnej
+
+```sh
+yarn build
+```
+
+Projekt uruchumiony jest na Vercel, gdzie budowany jest za pomocą powyższej komendy.

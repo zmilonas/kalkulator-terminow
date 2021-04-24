@@ -30,7 +30,7 @@
   "name": "kalkulator-terminow",
   "scripts": {
     "test": "jest",
-    "build:prod": "snowpack build",
+    "build": "snowpack build",
     "start": "snowpack dev",
     "watch": "watchexec -w src -w package.json -w tsconfig.json yarn build:dev"
   },
