@@ -1,14 +1,16 @@
 import {format as dateFnsFormat, formatDuration as dateFnsFormatDuration} from "date-fns";
-import dateFnsLocalePL from "date-fns/locale/pl/index.js";
 import Holidays, {Holiday as libHoliday} from "date-holidays";
+import * as React from "react";
 
 export type Holiday = libHoliday;
 
-export const format: typeof dateFnsFormat = (date, format): string => {
-    return dateFnsFormat(date, format, {locale: dateFnsLocalePL});
+export const format: typeof dateFnsFormat = (date, format, options): string => {
+    const context = React.useContext(DateHelperContext);
+    return context.format(date, format, options);
 }
 export const formatDuration: typeof dateFnsFormatDuration = (value, options) => {
-    return dateFnsFormatDuration(value, {locale: dateFnsLocalePL, ...options});
+    const context = React.useContext(DateHelperContext);
+    return context.formatDuration(value, options);
 };
 
 export function dayOfMonth(date: Date): string {
@@ -26,4 +28,9 @@ export function getHoliday(date: Date): false | Holiday[] {
 export function isBankHoliday(date: Date): boolean {
     return getHoliday(date) !== false;
 }
+
+export const DateHelperContext = React.createContext<{
+    format: typeof dateFnsFormat,
+    formatDuration: typeof dateFnsFormatDuration,
+}>(undefined);
 

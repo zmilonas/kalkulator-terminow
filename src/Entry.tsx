@@ -7,14 +7,14 @@ import {formatDuration} from "./date-helpers";
 
 export const Entry: React.FC<{ value: Duration }> = ({value}) => {
     const state = React.useContext(DurationCtx);
-    const chosen = shallowEqual(value, state.duration);
+    const chosen: boolean = shallowEqual(value, state.duration);
     const onClick = () => {
         state.setDuration(!chosen ? value : null);
     };
     const Component = chosen ? SelectedPill : Pill;
 
     return (
-        <Component onClick={onClick}>
+        <Component onClick={onClick} role={'radio'} aria-checked={chosen}>
             {formatDuration(value, {delimiter: "&nbsp;"})}
         </Component>
     );
