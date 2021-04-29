@@ -1,4 +1,4 @@
-import {Box, GridItem, Text} from "@chakra-ui/react";
+import {Box, extendTheme, GridItem, Text} from "@chakra-ui/react";
 import * as React from "react";
 
 export { Box } from '@chakra-ui/react';
@@ -19,7 +19,7 @@ export const Result = ({children, ...props}) => (
     </Text>
 );
 export const Pill = ({children, ...props}) => (
-    <Box px={2} borderRadius={"xl"} cursor={"pointer"} {...props}>
+    <Box px={1} borderRadius={"xl"} cursor={"pointer"} {...props}>
         {children}
     </Box>
 );
@@ -38,3 +38,19 @@ export const ContentItem: React.FC = ({children}) => (
         {children}
     </GridItem>
 );
+export const theme = extendTheme({
+    colors: {
+        muted: 'gray.500',
+        accent: 'teal.500',
+    },
+    sizes: {
+        1: '0.75rem',
+        2: '1rem',
+        4: '2rem',
+    },
+    space: {
+        1: '0.75rem',
+        2: '1rem',
+        4: '2rem',
+    },
+});
