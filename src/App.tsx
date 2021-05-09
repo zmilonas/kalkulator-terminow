@@ -1,13 +1,13 @@
 import * as React from "react";
-import {ChakraProvider, Container, extendTheme, Grid, GridItem, Heading, Input, Link, Text} from "@chakra-ui/react";
+import {ChakraProvider, Container, Grid, GridItem, Heading, Input, Link, Text} from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import {countDates} from "./count-dates";
 import {defaultStartDate, DurationCtx, SelectedDuration, useDuration} from "./store";
-import {ContentItem, MidTitle} from "./Style";
+import {ContentItem, MidTitle, theme} from "./Style";
 import {DurationRow} from "./DurationRow";
 import {Explanations} from "./Explanations";
 import {ResultBox} from "./ResultBox";
-import { DateHelperContext } from "./date-helpers";
+import {DateHelperContext} from "./date-helpers";
 import * as i18n from './i18n';
 
 function calculate(startDate: Date, duration: SelectedDuration): ReturnType<typeof countDates>
@@ -21,13 +21,6 @@ function calculate(startDate: Date, duration: SelectedDuration): ReturnType<type
 type AppDependencies = {
   i18n: typeof i18n;
 }
-
-const theme = extendTheme({
-    colors: {
-        muted: 'gray.500',
-        accent: 'teal.500',
-    },
-})
 
 const Helmet = () => (
     <>

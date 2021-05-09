@@ -10,7 +10,7 @@ export const ResultBox: React.FC<{
 }> = ({startDate, resultDate, duration}) => {
     const formattedDuration: string = formatDuration(duration || {}) || 'chwila';
     return (
-        <Box p={4} borderWidth="1px" borderRadius="sm" width={"100%"}>
+        <Box p={2} borderWidth="1px" borderRadius="sm" width={"100%"}>
             <DateExpression>
                 {formattedDuration} od {format(startDate, "do MMMM yyyy")} to
             </DateExpression>
