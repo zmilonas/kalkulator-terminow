@@ -33,5 +33,7 @@ describe("countDates", () => {
   run("2020-01-30", { months: 12 }, "2021-02-01", "works for 12 months landing on saturday");
   run("2020-03-29", { days: 14 }, "2020-04-14", "works around easter 2020");
   run("2021-03-05", { days: 7 }, "2021-03-12");
+  run("2021-09-10", { months: 3}, "2021-12-10");
+  run("2021-09-01", { months: 4}, "2022-01-03");
   run("2021-04-30", { days: 1 }, "2021-05-04");
 });

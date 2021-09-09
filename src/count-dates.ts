@@ -17,11 +17,6 @@ export function countDates(startDate: Date, dur: Duration, _skipped: SkippedDay[
 
     const skip = (reason: SKIP_REASON): SkippedDay[] => ([..._skipped, { date: result, reason }]);
 
-    if (dur.months && (getMonth(startDate) + dur.months) % 11 !== getMonth(result)) {
-        const lastDayOfDesiredMonth = lastDayOfMonth(result);
-        return countDates(lastDayOfDesiredMonth, {}, skip(SKIP_REASON.LAST_DAY_OF_MONTH));
-    }
-
     if (isWeekend(result)) {
         return countDates(result, {days: 1}, skip(SKIP_REASON.WEEKEND));
     }
