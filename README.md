@@ -1,18 +1,16 @@
-# Kalkulator terminów
+# Legal date calculator (Kalkulator terminów)
 
-Kalkulator jest aplikacją webową służącą liczeniu daty minięcia terminu według zasad określonych w polskim prawie.
+This calculator is web app intended to allow to determine the correct date of legal event, in accordance to the polish law (administrative in particular)
 
-Podstawą prawną jest Art. 57, par. 1 - 4 ustawy z dnia 14 czerwca 1960 r. Kodeks postępowania administracyjnego (t.j. Dz. U. z 2020 r. poz. 256 z późn. zm.). Bardzo podobne zasady obliczania terminów obowiązują w innych gałęziach prawa - cywilnym i karnym w związku z tym powinny być one możliwe do stosowania zamiennie.
+It is not intended to be a guaranteed source of truth but it helps to understand and learn how the calculation is done.
 
-Kalkulator nie daje gwarancji poprawności danego terminu ale zdecydowania pomaga w nauce, zrozumieniu i ew. szybszym sprawdzeniu aniżeli ręczne liczenie takiej daty.
+Starting date is usually a legal event - e.g. date of getting a letter which we count from.
 
-Data początkowa terminu to zazwyczaj termin doręczenia, data, od której liczy się termin.
+The duration is usually to be found in an article connected to the event, e.g. appeal, request etc.
 
-Termin to długość określona w konkretnych przepisie ustawy, np. termin na odwołanie, zażalenie, wniesienie skargi itd.
+## Legal basis
 
-## Brzmienie przepisu, zasada działania
-
-Kalkulator został przygotowany na początku 2021 roku z ówczesnym poniższym brzmieniem przepisu KPA.
+This calculator was prepared at the start of 2021 when the legal foundation of the counting looked like that (in polish):
 
 ```
 Art.  57.
@@ -23,52 +21,52 @@ Art.  57.
 §  4. Jeżeli koniec terminu do wykonania czynności przypada na dzień uznany ustawowo za wolny od pracy lub na sobotę, termin upływa następnego dnia, który nie jest dniem wolnym od pracy ani sobotą.
 ```
 
-## Technologia
+## Tech stack
 
-Logika obliczania oraz widok kalkulatora są napisane w TypeScript.
+"Legal" logic is written in TypeScript
 
-Wykorzystane są biblioteki z `npm` do obsługi dat i dni wolnych od pracy - `date-fns`, `date-holidays`.
+For date counting and accurate day off calculations two `npm` libraries are used - `date-fns`, `date-holidays`.
 
-### Widoki
+### View layer
 
-Widoki przygotowane są w React, w TypeScript wykorzystujący komponenty i style z `@chakra-ui`. Dodatkowo picker do daty początkowej jest z biblioteki `react-datepicker`.
+The app is rendedred with React, in TypeScript using components and styles from `@chakra-ui`. Additionally `react-datepicker` is used for picking the start date.
 
-W ramach React używany jest Context i React Hooki oraz Functionl Componenty czyli rekomendowany aktualnie sposób tworzenia komponentów w tej bibliotece. Na tyle ile to możliwe widoki są napisane zgodnie z funkcyjnym podejściem czyli bez mutowania stanu i side-effectów w poszczególnych funkcjach.
+React Hooks, Context and Functional components are used. The whole app is written with Functional approach in mind - no state mutation and side-effects.
 
-### Bundlowanie
+### Bundling
 
-Bundlowanie wszystkich assetów jest zapewnione przez `snowpack`, który wykorzystuje `esbuild` do transpilacji TypeScript i TSX do JS uruchamialnego w środowisku przeglądarki. Snowpack zapewnia również tryb developerski (`dev`) do prototypowania zmian i odzwierciedlania ich w przeglądarce na bieżąco.
+Asset bundling is provided by `snowpack`, which under the hood uses `esbuild` for transpilation. Snowpack is also responsible for the dev environment for prototyping and quick iteration.
 
-### Testy
+### Tests
 
-Logika obliczania terminów jest pokryta w testach automatycznych, przy każdej zmianie wszystkie testy powinny przechodzić.
+"Legal logic" is covered with automatic tests, which should pass with every commit.
 
-## Instalacja, uruchamianie
+## How to run
 
-Do uruchomienia projektu w środowisku deweloperskim, na swojej maszynie wymagany jest `yarn`.
+The only prerequisite is `yarn`, which you can use on a host machine or via docker.
 
-Instalacja zależności:
+Install dependencies:
 
 ```sh
 yarn
 ```
 
-Uruchomienie aplikacji na `localhost`
+Run the app on `localhost`
 
 ```sh
 yarn start
 ```
 
-Wykonanie testów automatycznych
+Running tests
 
 ```sh
 yarn test
 ```
 
-Zbudowanie wersji produkcyjnej
+Transpile and bundle for production
 
 ```sh
 yarn build
 ```
 
-Projekt uruchumiony jest na Vercel, gdzie budowany jest za pomocą powyższej komendy.
+The app is deployed on Vercel which uses the above command for building.
