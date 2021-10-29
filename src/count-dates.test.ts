@@ -17,7 +17,7 @@ describe("countDates", () => {
         formatDuration(duration)
       } added to ${inputISODate}`;
     it(testName, () => {
-      const inputDate = parseISO(`${inputISODate} 13:00`);
+      const inputDate = parseISO(`${inputISODate} 13:00`); // Using middle of the day to compensate for potential DST changes
       const outputDate = parseISO(`${expectedISODate} 13:00`);
       const [countedDate] = countDates(inputDate, duration);
 
