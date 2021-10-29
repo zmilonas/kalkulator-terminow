@@ -1,5 +1,7 @@
 # Legal date calculator (Kalkulator terminów)
 
+You can find the same **README in polish** which more accurately references legal foundations of this project: <a href="./README.pl.md">README.pl.md</a>
+
 This calculator is web app intended to allow to determine the correct date of legal event, in accordance to the polish law (administrative in particular)
 
 It is not intended to be a guaranteed source of truth but it helps to understand and learn how the calculation is done.
